@@ -69,7 +69,8 @@ function _normalizeStudent(s) {
 
 function _getPetLevel(exp) {
   // 与后端版本保持一致（用于 stage 计算）
-  const stages = [0,100,300,600,1000,1500,2200,3100,4200,5600,7200,9000,11200,13700,16500,20000,24000,28500,33500,39000,45000];
+  // 经验阈值：与 js/data.js 的 GROWTH_STAGES 保持一致（按“一学年满级”节奏）
+  const stages = [0,60,180,360,600,900,1260,1680,2160,2700,3300,3960,4680,5460,6300,7200,8160,9180,10020,10620,10800];
   for (let i = stages.length - 1; i >= 0; i--) {
     if (exp >= stages[i]) return i;
   }

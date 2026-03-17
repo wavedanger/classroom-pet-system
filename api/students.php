@@ -205,7 +205,7 @@ if ($action === 'useItem') {
 
     // ===== 每日经验上限逻辑 =====
     // 每天喂食/洗澡/玩耍/治疗行为才能给宠物积累经验，每日最多 DAILY_EXP_LIMIT 点
-    $DAILY_EXP_LIMIT = 50;  // 与前端 data.js 保持一致
+    $DAILY_EXP_LIMIT = 60;  // 与前端 data.js 保持一致（按“一学年满级”节奏）
     // 今日已获经验（从 daily_exp_date 和 daily_exp_earned 字段读取）
     $todayDate   = date('Y-m-d');
     $dailyDate   = $row['daily_exp_date']   ?? '';
@@ -500,7 +500,10 @@ function addPointsDB($pdo, $studentId, $pts, $reason, $icon='⭐') {
 }
 
 function getPetLevel($exp) {
-    $stages = [0,100,300,600,1000,1500,2200,3100,4200,5600,7200,9000,11200,13700,16500,20000,24000,28500,33500,39000,45000];
+    // 经验阈值：与前端 js/data.js 的 GROWTH_STAGES 保持一致
+    $stages = [0,60,180,360,600,900,1260,1680,2160,2700,3300,3960,4680,5460,6300,7200,8160,9180,10020,10620,10800];
+    // 经验阈值：与前端 js/data.js 的 GROWTH_STAGES 保持一致
+    $stages = [0,60,180,360,600,900,1260,1680,2160,2700,3300,3960,4680,5460,6300,7200,8160,9180,10020,10620,10800];
     for ($i = count($stages)-1; $i >= 0; $i--) {
         if ($exp >= $stages[$i]) return $i;
     }

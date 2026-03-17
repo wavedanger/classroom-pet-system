@@ -10,40 +10,51 @@ const PET_TYPES = [
   { id: 'bird',   name: '彩翼鸟', emoji: '🐦', egg: '🥚', stages: ['🥚','🐣','🐦','🦜','🦅','🌈','🪄'] },
   { id: 'dog',    name: '旺财狗', emoji: '🐶', egg: '🥚', stages: ['🥚','🐣','🐶','🐕','🦴','🎖️','👑'] },
   { id: 'fairy',  name: '梦精灵', emoji: '🧚', egg: '🥚', stages: ['🥚','🐣','🧚','✨','🌟','🎇','🌠'] },
+  { id: 'panda',  name: '团子熊猫', emoji: '🐼', egg: '🥚', stages: ['🥚','🐣','🐼','🐻','🐻‍❄️','🎋','👑'] },
+  { id: 'fox',    name: '灵狐',     emoji: '🦊', egg: '🥚', stages: ['🥚','🐣','🦊','🦊','🐺','🌙','✨'] },
+  { id: 'turtle', name: '慢慢龟',   emoji: '🐢', egg: '🥚', stages: ['🥚','🐣','🐢','🐢','🦖','🌊','🗿'] },
+  { id: 'penguin',name: '冰团企鹅', emoji: '🐧', egg: '🥚', stages: ['🥚','🐣','🐧','🐧','🦭','❄️','💎'] },
+  { id: 'koala',  name: '软软考拉', emoji: '🐨', egg: '🥚', stages: ['🥚','🐣','🐨','🐻','🌿','🍃','🌟'] },
+  { id: 'dolphin',name: '海跃豚',   emoji: '🐬', egg: '🥚', stages: ['🥚','🐣','🐟','🐬','🐳','🌊','🔱'] },
+  { id: 'unicorn',name: '彩虹独角兽',emoji:'🦄', egg: '🥚', stages: ['🥚','🐣','🦄','🐎','🪽','🌈','💫'] },
+  { id: 'robot',  name: '机甲萌宠', emoji: '🤖', egg: '🥚', stages: ['🥚','🐣','🤖','🦾','⚙️','🔋','🚀'] },
+  { id: 'slime',  name: '果冻史莱姆',emoji:'🫧', egg: '🥚', stages: ['🥚','🐣','🫧','🟢','🔵','🟣','🌌'] },
+  { id: 'tiger',  name: '小虎崽',   emoji: '🐯', egg: '🥚', stages: ['🥚','🐣','🐯','🐅','🦁','⚡','👑'] },
 ];
 
 // 每日经验上限配置（宠物每天最多获得的经验值）
-// 设定为 50 exp/天，全程约 6 年（2190天）才能满级到 45000 exp
+// 一年级一学年（上下两学期）使用：按约 180 个上课日估算
+// 设定为 60 exp/天 → 全年上限约 10800 exp，可在一学年内成长到满级
 // 每天喂食、洗澡、玩耍等护理行为才能累计经验，积分不再直接转化为经验
-const DAILY_EXP_LIMIT = 50;
+const DAILY_EXP_LIMIT = 60;
 
-// 宠物成长阶段（共20级，设计为小学6年可持续成长）
+// 宠物成长阶段（共20级，按“一学年成长到满级”节奏设计）
 // 经验需求说明：
-//   宠物每天最多获得 50 exp（通过喂食/洗澡/玩耍等护理行为积累）
-//   全程约 6 年（45000 exp ÷ 50 exp/天 ≈ 900天，约2.5学年）
-//   注意：积分仅用于购买道具，不能直接转化为宠物经验
+//   - 宠物每天最多获得 60 exp（通过喂食/洗澡/玩耍等护理行为积累）
+//   - 约 180 个上课日 → 10800 exp 可达满级（20级）
+//   - 注意：积分仅用于购买道具，不能直接转化为宠物经验
 const GROWTH_STAGES = [
-  { level:  0, name: '蛋',      minExp: 0,     maxExp: 100   },
-  { level:  1, name: '刚出壳',  minExp: 100,   maxExp: 300   },
-  { level:  2, name: '小幼宠',  minExp: 300,   maxExp: 600   },
-  { level:  3, name: '幼宠',    minExp: 600,   maxExp: 1000  },
-  { level:  4, name: '活泼期',  minExp: 1000,  maxExp: 1500  },
-  { level:  5, name: '成长期',  minExp: 1500,  maxExp: 2200  },
-  { level:  6, name: '少年宠',  minExp: 2200,  maxExp: 3100  },
-  { level:  7, name: '青春期',  minExp: 3100,  maxExp: 4200  },
-  { level:  8, name: '亚成体',  minExp: 4200,  maxExp: 5600  },
-  { level:  9, name: '成长宠',  minExp: 5600,  maxExp: 7200  },
-  { level: 10, name: '壮年宠',  minExp: 7200,  maxExp: 9000  },
-  { level: 11, name: '熟练宠',  minExp: 9000,  maxExp: 11200 },
-  { level: 12, name: '精英宠',  minExp: 11200, maxExp: 13700 },
-  { level: 13, name: '强化宠',  minExp: 13700, maxExp: 16500 },
-  { level: 14, name: '进化宠',  minExp: 16500, maxExp: 20000 },
-  { level: 15, name: '超进化',  minExp: 20000, maxExp: 24000 },
-  { level: 16, name: '稀有宠',  minExp: 24000, maxExp: 28500 },
-  { level: 17, name: '史诗宠',  minExp: 28500, maxExp: 33500 },
-  { level: 18, name: '传奇宠',  minExp: 33500, maxExp: 39000 },
-  { level: 19, name: '神话宠',  minExp: 39000, maxExp: 45000 },
-  { level: 20, name: '✨传说✨', minExp: 45000, maxExp: 99999 },
+  { level:  0, name: '蛋',      minExp: 0,     maxExp: 60    },
+  { level:  1, name: '刚出壳',  minExp: 60,    maxExp: 180   },
+  { level:  2, name: '小幼宠',  minExp: 180,   maxExp: 360   },
+  { level:  3, name: '幼宠',    minExp: 360,   maxExp: 600   },
+  { level:  4, name: '活泼期',  minExp: 600,   maxExp: 900   },
+  { level:  5, name: '成长期',  minExp: 900,   maxExp: 1260  },
+  { level:  6, name: '少年宠',  minExp: 1260,  maxExp: 1680  },
+  { level:  7, name: '青春期',  minExp: 1680,  maxExp: 2160  },
+  { level:  8, name: '亚成体',  minExp: 2160,  maxExp: 2700  },
+  { level:  9, name: '成长宠',  minExp: 2700,  maxExp: 3300  },
+  { level: 10, name: '壮年宠',  minExp: 3300,  maxExp: 3960  },
+  { level: 11, name: '熟练宠',  minExp: 3960,  maxExp: 4680  },
+  { level: 12, name: '精英宠',  minExp: 4680,  maxExp: 5460  },
+  { level: 13, name: '强化宠',  minExp: 5460,  maxExp: 6300  },
+  { level: 14, name: '进化宠',  minExp: 6300,  maxExp: 7200  },
+  { level: 15, name: '超进化',  minExp: 7200,  maxExp: 8160  },
+  { level: 16, name: '稀有宠',  minExp: 8160,  maxExp: 9180  },
+  { level: 17, name: '史诗宠',  minExp: 9180,  maxExp: 10020 },
+  { level: 18, name: '传奇宠',  minExp: 10020, maxExp: 10620 },
+  { level: 19, name: '神话宠',  minExp: 10620, maxExp: 10800 },
+  { level: 20, name: '✨传说✨', minExp: 10800, maxExp: 99999 },
 ];
 
 // 宠物状态表情
