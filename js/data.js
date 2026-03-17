@@ -21,7 +21,7 @@ const PET_TYPES = [
   { id: 'deer',   name: '樱花小鹿', emoji: '🦌', egg: '🥚', stages: ['🥚','🐣','🦌','🦌','🦙','🌸','🌟'] },
   { id: 'angel',  name: '小天使',   emoji: '😇', egg: '🥚', stages: ['🥚','🐣','😇','🪽','🕊️','✨','👼'] },
   { id: 'mermaid',name: '海之精灵', emoji: '🧜‍♀️', egg: '🥚', stages: ['🥚','🐣','🐟','🧜‍♀️','🧜‍♀️','🫧','🌊'] },
-  { id: 'nebula', name: '星云喵',   emoji: '🐈‍⬛', egg: '🥚', stages: ['🥚','🐣','🐈‍⬛','🌙','⭐','🌌','✨'] },
+  { id: 'nebula', name: '星云喵',   emoji: '🐈‍', egg: '🥚', stages: ['🥚','🐣','🐈‍','🌙','⭐','🌌','✨'] },
   { id: 'tiger',  name: '小虎崽',   emoji: '🐯', egg: '🥚', stages: ['🥚','🐣','🐯','🐅','🦁','⚡','👑'] },
 ];
 
