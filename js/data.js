@@ -18,7 +18,10 @@ const PET_TYPES = [
   { id: 'dolphin',name: '海跃豚',   emoji: '🐬', egg: '🥚', stages: ['🥚','🐣','🐟','🐬','🐳','🌊','🔱'] },
   { id: 'unicorn',name: '彩虹独角兽',emoji:'🦄', egg: '🥚', stages: ['🥚','🐣','🦄','🐎','🪽','🌈','💫'] },
   { id: 'robot',  name: '机甲萌宠', emoji: '🤖', egg: '🥚', stages: ['🥚','🐣','🤖','🦾','⚙️','🔋','🚀'] },
-  { id: 'slime',  name: '果冻史莱姆',emoji:'🫧', egg: '🥚', stages: ['🥚','🐣','🫧','🟢','🔵','🟣','🌌'] },
+  { id: 'deer',   name: '樱花小鹿', emoji: '🦌', egg: '🥚', stages: ['🥚','🐣','🦌','🦌','🦙','🌸','🌟'] },
+  { id: 'angel',  name: '小天使',   emoji: '😇', egg: '🥚', stages: ['🥚','🐣','😇','🪽','🕊️','✨','👼'] },
+  { id: 'mermaid',name: '海之精灵', emoji: '🧜‍♀️', egg: '🥚', stages: ['🥚','🐣','🐟','🧜‍♀️','🧜‍♀️','🫧','🌊'] },
+  { id: 'nebula', name: '星云喵',   emoji: '🐈‍⬛', egg: '🥚', stages: ['🥚','🐣','🐈‍⬛','🌙','⭐','🌌','✨'] },
   { id: 'tiger',  name: '小虎崽',   emoji: '🐯', egg: '🥚', stages: ['🥚','🐣','🐯','🐅','🦁','⚡','👑'] },
 ];
 
